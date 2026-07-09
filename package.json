@@ -52,5 +52,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.28"
   }
 }
