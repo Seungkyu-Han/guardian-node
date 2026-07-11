@@ -1,6 +1,6 @@
 {
-	"name": "@seungkyu/guardin",
-	"version": "1.0.1",
+	"name": "@seungkyu/guardian",
+	"version": "0.0.1",
 	"description": "A lightweight and robust JWT & Authentication utility for modern backend applications.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -31,7 +31,7 @@
 		"auth",
 		"authentication",
 		"token",
-		"guardin",
+		"guardian",
 		"token-manager"
 	],
 	"author": "seungkyu",
