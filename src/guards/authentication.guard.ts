@@ -37,9 +37,10 @@ export class AuthenticationGuard implements CanActivate {
 			request.principal = await this.jwtService.verifyAsync(token, {
 				secret: this.accessTokenSecret,
 			});
-		} catch (error: any) {
-			if (error.name === 'TokenExpiredError')
+		} catch (error: unknown) {
+			if (error instanceof Error && error.name === 'TokenExpiredError') {
 				throw new UnauthorizedException('token expired');
+			}
 
 			throw new UnauthorizedException('invalid token');
 		}
@@ -70,16 +71,18 @@ export class AuthenticationGuard implements CanActivate {
 		context: ExecutionContext,
 		principal: Principal,
 	): boolean {
-		const requiredRole: number | undefined = this.reflector.getAllAndOverride<number>(
-			ROLE_KEY,
-			[context.getHandler(), context.getClass()],
-		);
+		const requiredRole: number | undefined =
+			this.reflector.getAllAndOverride<number>(ROLE_KEY, [
+				context.getHandler(),
+				context.getClass(),
+			]);
 
 		if (!requiredRole) return true;
 
 		const userRole = principal.authorities;
 
-		if (userRole < requiredRole) throw new ForbiddenException('insufficient privileges');
+		if (userRole < requiredRole)
+			throw new ForbiddenException('insufficient privileges');
 
 		return true;
 	}
