@@ -37,9 +37,11 @@
   "author": "seungkyu",
   "license": "MIT",
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
+    "@types/ms": "^2.1.0",
     "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
@@ -57,6 +59,8 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.1.28",
-    "@nestjs/jwt": "^11.0.2"
+    "@nestjs/core": "^11.1.28",
+    "@nestjs/jwt": "^11.0.2",
+    "ms": "^2.1.3"
   }
 }

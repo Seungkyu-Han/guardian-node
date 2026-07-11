@@ -1,7 +1,9 @@
-import { Request } from 'express';
+import { Principal } from './principal';
 
-declare module 'express' {
-	interface Request {
-		user?: any;
+declare global {
+	namespace Express {
+		interface Request {
+			principal: Principal;
+		}
 	}
 }
