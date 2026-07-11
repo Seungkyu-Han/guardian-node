@@ -1,1 +1,1 @@
-console.log('Happy developing ✨')
+export * from './decorators/authentication.decorator';

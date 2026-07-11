@@ -1,0 +1,1 @@
+export const GUARDIAN_OPTION_TOKEN = Symbol('GUARDIAN_OPTION_TOKEN');
