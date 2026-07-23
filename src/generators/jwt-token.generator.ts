@@ -3,6 +3,7 @@ import { GuardianModuleOptions } from '../options/guardian.module.options';
 import { GUARDIAN_OPTION_TOKEN } from '../tokens/guardian.option.token';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { Principal } from '../types/principal';
+import { StringValue } from 'ms';
 
 @Injectable()
 export class JwtTokenGenerator {
@@ -21,11 +22,24 @@ export class JwtTokenGenerator {
 		const accessTokenExpiresIn =
 			guardianModuleOptions.accessTokenOptions.expiresIn ?? '30m';
 
-		const refreshTokenSecret =
-			guardianModuleOptions.refreshTokenOptions.secretKey ??
-			accessTokenSecret;
-		const refreshTokenExpiresIn =
-			guardianModuleOptions.refreshTokenOptions.expiresIn ?? '40m';
+		let refreshTokenSecret: string | undefined;
+		let refreshTokenExpiresIn: StringValue | undefined;
+
+		if (
+			guardianModuleOptions.refreshTokenOptions &&
+			guardianModuleOptions.refreshTokenOptions.secretKey
+		)
+			refreshTokenSecret =
+				guardianModuleOptions.refreshTokenOptions.secretKey;
+		else refreshTokenSecret = accessTokenSecret;
+
+		if (
+			guardianModuleOptions.refreshTokenOptions &&
+			guardianModuleOptions.refreshTokenOptions.expiresIn
+		)
+			refreshTokenExpiresIn =
+				guardianModuleOptions.refreshTokenOptions.expiresIn;
+		else refreshTokenExpiresIn = '40m';
 
 		this.accessJwtSignOptions = {
 			secret: accessTokenSecret,
