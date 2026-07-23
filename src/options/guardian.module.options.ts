@@ -1,7 +1,7 @@
 import { StringValue } from 'ms';
 
 export interface GuardianModuleOptions {
-	algorithm:
+	algorithm?:
 		| 'HS256'
 		| 'HS384'
 		| 'HS512'
@@ -20,7 +20,7 @@ export interface GuardianModuleOptions {
 		secretKey: string;
 		expiresIn?: StringValue;
 	};
-	refreshTokenOptions: {
+	refreshTokenOptions?: {
 		secretKey?: string;
 		expiresIn?: StringValue;
 	};
